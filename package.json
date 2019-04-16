@@ -1,0 +1,29 @@
+{
+  "name": "becode-template",
+  "version": "1.0.0",
+  "description": "A simple template to use in Becode's JavaScript exercises.",
+  "scripts": {
+    "dev": "rm -rf .cache dist && parcel index.njk",
+    "build": "rm -rf .cache dist docs && parcel build index.njk --public-url ./ --out-dir docs",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "nunjucks": "^3.1.7",
+    "parcel-bundler": "^1.11.0",
+    "parcel-plugin-nunjucks": "^1.1.0",
+    "sass": "^1.17.2"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7"
+  }
+}

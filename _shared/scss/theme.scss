@@ -1,0 +1,76 @@
+
+@import "./variables.scss";
+@import "~bootstrap/scss/bootstrap.scss";
+@import "./bootswatch.scss";
+
+/*
+Shared styles for javascript exercices
+*/
+
+:root {
+  --becode-main-blue: #16232E;
+  --becode-light-blue: #63C3D1;
+  --becode-alt-blue: #245060;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  padding-top: 17.5vh;
+  background: var(--becode-main-blue) url(/_shared/img/becode-seal.png) top .5rem center no-repeat;
+  background-size: auto 25vh;
+}
+
+.container {
+  position: relative;
+}
+
+.content {
+  min-height: 25vh;
+  background: white;
+  box-shadow: .25rem .25rem 2.5rem var(--becode-main-blue);
+  padding: 5rem 2rem 2rem;
+}
+
+header h1 {
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  padding: .4rem .6rem .6rem;
+  background: var(--becode-light-blue);
+  font-size: 1.5rem;
+  color: white;
+  transform: rotate(-5deg);
+  box-shadow: .25rem .25rem .5rem rgba(0, 0, 0, .25);
+}
+
+header h2 {
+  position: absolute;
+  top: 1.6rem;
+  left: 2rem;
+  padding: .5rem 1rem .6rem 1rem;
+  background: var(--becode-main-blue);
+  font-size: 1rem;
+  color: white;
+  transform: rotate(.5deg);
+  box-shadow: .25rem .25rem .5rem rgba(0, 0, 0, .25);
+}
+
+header h2 span {
+  display: block;
+  position: absolute;
+  top: -0.75rem;
+  left: -3.75rem;
+  width: 5.2rem;
+  height: 5.2rem;
+  background: var(--becode-alt-blue);
+  border-radius: 100%;
+  box-shadow: .25rem .25rem .5rem rgba(0, 0, 0, .25);
+  line-height: 5.2rem;
+  text-align: center;
+  transform: rotate(7.5deg);
+}
+
