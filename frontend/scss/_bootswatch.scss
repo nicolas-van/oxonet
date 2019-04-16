@@ -1,92 +1,42 @@
-// Litera 4.2.1
+// Darkly 4.3.1
 // Bootswatch
 
 
 // Variables ===================================================================
 
-$font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !default;
+$web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic" !default;
+@import url($web-font-path);
 
 // Navbar ======================================================================
 
-.navbar {
-  font-size: 0.875em;
+.bg-primary {
+  .navbar-nav .active > .nav-link {
+    color: $success !important;
+  }
 }
 
 .bg-dark {
   background-color: $success !important;
-}
-
-.bg-light {
-  background-color: #fff !important;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-
-  &.navbar-fixed-top {
-    border-width: 0 0 1px 0;
-  }
-
-  &.navbar-fixed-bottom {
-    border-width: 1px 0 0 0;
+  &.navbar-dark .navbar-nav {
+    .nav-link:focus,
+    .nav-link:hover,
+    .active > .nav-link {
+      color: $primary !important;
+    }
   }
 }
 
 // Buttons =====================================================================
 
-.btn {
-  border-radius: 1.078em;
-  font-family: $font-family-sans-serif;
-  font-size: 0.875em;
-
-  &-lg {
-    border-radius: 2.688em;
-  }
-
-  &-sm {
-    border-radius: 0.844em;
-    font-size: 0.688em;
-  }
-
-  &-secondary,
-  &-secondary:hover,
-  &-warning,
-  &-warning:hover {
-    color: $white;
-  }
-}
-
 // Typography ==================================================================
 
-p {
-  font-family: $font-family-serif;
-}
-
-blockquote {
-  font-style: italic;
-}
-
-footer {
-  font-size: 0.875em;
-}
-
-.lead {
-  color: $gray-600;
-  font-family: $font-family-sans-serif;
+.blockquote {
+  &-footer {
+    color: $gray-600;
+  }
 }
 
 // Tables ======================================================================
-
-table,
-.table {
-  font-size: 0.875em;
-
-  &-primary,
-  &-secondary,
-  &-success,
-  &-info,
-  &-warning,
-  &-danger {
-    color: #fff;
-  }
-}
 
 .table {
 
@@ -205,71 +155,83 @@ table,
 
 // Forms =======================================================================
 
-// Navs ========================================================================
-
-.nav,
-.breadcrumb,
-.pagination {
-  font-size: 0.875em;
+.input-group-addon {
+  color: #fff;
 }
 
-.dropdown-menu {
-  font-size: 0.875em;
+// Navs ========================================================================
+
+.nav-tabs,
+.nav-pills {
+
+  .nav-link,
+  .nav-link.active,
+  .nav-link.active:focus,
+  .nav-link.active:hover,
+  .nav-item.open .nav-link,
+  .nav-item.open .nav-link:focus,
+  .nav-item.open .nav-link:hover {
+    color: #fff;
+  }
+}
+
+.breadcrumb a {
+  color: #fff;
+}
+
+.pagination {
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 // Indicators ==================================================================
 
+.close {
+  opacity: 0.4;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
 .alert {
   border: none;
   color: $white;
-  font-size: 0.875em;
 
-  &, p {
-    font-family: $font-family-sans-serif;
-  }
-
-  a, .alert-link {
+  a,
+  .alert-link {
     color: #fff;
-    font-weight: normal;
     text-decoration: underline;
   }
 
   @each $color, $value in $theme-colors {
     &-#{$color} {
       @if $enable-gradients {
-        background: $value linear-gradient(0deg, mix($body-bg, $value, 15%), $value) repeat-x;
+        background: $value linear-gradient(180deg, mix($white, $value, 15%), $value) repeat-x;
       } @else {
         background-color: $value;
       }
     }
   }
-
-  &-light {
-    &,
-    & a,
-    & .alert-link {
-      color: $body-color;
-    }
-  }
-}
-
-.badge {
-  vertical-align: bottom;
-
-  &-secondary,
-  &-warning {
-    color: $white;
-  }
-}
-
-.tooltip {
-  font-size: 11px;
 }
 
 // Progress bars ===============================================================
 
 // Containers ==================================================================
 
-.list-group {
-  font-size: 0.875em;
+
+.list-group-item-action {
+  color: #fff;
+
+  &:hover,
+  &:focus {
+    background-color: $gray-700;
+    color: #fff;
+  }
+
+  .list-group-item-heading {
+    color: #fff;
+  }
 }

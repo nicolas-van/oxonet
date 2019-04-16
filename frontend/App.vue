@@ -1,12 +1,15 @@
 <template>
-  <div class="container">
-    <h1>OXONet</h1>
-    <button v-on:click="newParty">New Party</button>
+  <div class="wrapper">
+    <div class="content">
+      <h1>OXONet</h1>
+      <p class="text-center">
+        <button class="btn btn-primary" v-on:click="newParty">New Party</button>
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
-
 import io from 'socket.io-client';
 
 export default {
@@ -24,14 +27,17 @@ export default {
     }
   }
 };
-
-
 </script>
 
 <style scoped>
-  .container {
-    width: 600px;
-    margin: 50px auto;
-    text-align: center;
+  .wrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .content {
+
   }
 </style>
