@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A simple template to use in Becode's JavaScript exercises.",
   "scripts": {
-    "dev": "rm -rf .cache dist && parcel frontend/index.njk",
-    "build": "rm -rf .cache dist docs && parcel build frontend/index.njk --public-url ./ --out-dir dist",
+    "dev": "rm -rf .cache public && parcel frontend/index.njk --out-dir public",
+    "build": "rm -rf .cache public && parcel build frontend/index.njk --public-url ./ --out-dir public",
     "test": "jest"
   },
   "author": "",
