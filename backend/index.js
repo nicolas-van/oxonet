@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const Game = require('./Game');
 
 const app = express();
 
@@ -9,25 +10,23 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
-let number = 0;
+const games = {};
 
-io.on('connection', function(socket) {
-  const fctNumber = number;
-  number += 1;
+io.on('connection', (socket) => {
+  console.log(`user ${socket.id} connected`);
 
-  console.log('an user connected on ' + fctNumber);
-
-  socket.on('disconnect', function() {
-    console.log('user disconnected from ' + fctNumber);
+  socket.on('disconnect', () => {
+    console.log(`user ${socket.id} disconnected`);
   });
 
-  socket.on('chat message', function(msg){
-    console.log('message from ' + fctNumber + ': ' + msg);
-    io.emit('chat message', msg);
+  socket.on('newGame', () => {
+    const game = new Game();
+    games[game.id] = game;
+    console.log(`user ${socket.id} asks for a new game, generated ${game.id}`);
+    io.to(`${socket.id}`).emit("newGame", game.id);
   });
-
 });
 
-http.listen(3000, function() {
+http.listen(3000, () => {
   console.log('listening on *:3000');
 });

@@ -19,10 +19,9 @@ console.log("Hey look in your browser console. It works!");
 var socket = io();
 $('form').submit(function(e){
   e.preventDefault(); // prevents page reloading
-  socket.emit('chat message', $('#m').val());
-  $('#m').val('');
+  socket.emit('newGame');
   return false;
 });
-socket.on('chat message', function(msg){
-  $('#messages').append($('<li>').text(msg));
+socket.on('newGame', function(msg){
+  console.log("newGame response", msg);
 });
