@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "rm -rf .cache public && parcel frontend/index.njk --out-dir public",
     "build": "rm -rf .cache public && parcel build frontend/index.njk --public-url ./ --out-dir public",
-    "test": "jest"
+    "test": "jest",
+    "run": "node backend/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.3.1",
+    "express": "^4.16.4",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7"
   }
