@@ -1,8 +1,11 @@
 
 <template>
   <div class="wrapper">
-    <div class="content">
-      Game
+    <div v-if="waiting">
+      Waiting for other player to join, copy-paste and send the current URL to invite someone.
+    </div>
+    <div v-else>
+      Yop
     </div>
   </div>
 </template>
@@ -12,6 +15,11 @@ import * as data from './data';
 
 export default {
   name: 'Game',
+  data: function() {
+    return {
+      waiting: true,
+    };
+  },
   created: function () {
     this.gameId = this.$route.params.id;
     data.ensureInited();
@@ -19,7 +27,9 @@ export default {
     data.getSocket().emit("enterGame", this.gameId);
 
     this.gameStateHandler = (gameState) => {
-      console.log("game state", gameState);
+      this.gameState = gameState;
+      console.log("received game state", this.gameState);
+      this.waiting = ! (this.gameState.players[0] && this.gameState.players[1]);
     };
 
     data.getSocket().on("gameState", this.gameStateHandler);

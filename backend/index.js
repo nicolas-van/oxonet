@@ -30,8 +30,9 @@ io.on('connection',ex((socket) => {
   socket.on('disconnect', ex(() => {
     if (game) {
       game.removePlayer(socket.id);
-      socket.emit("gameState", game.toJson());
+      io.in(`/game/${game.id}`).emit("gameState", game.toJson());
       console.log(`user ${socket.id} leaved game ${game.id}`);
+      socket.leave(`/game/${game.id}`);
       game = null;
     }
     console.log(`user ${socket.id} disconnected`);
@@ -52,13 +53,14 @@ io.on('connection',ex((socket) => {
     game = games[gameId];
     socket.join(`/game/${game.id}`);
     console.log(`user ${socket.id} joined game ${game.id}`);
-    socket.emit("gameState", game.toJson());
+    io.in(`/game/${game.id}`).emit("gameState", game.toJson());
   }));
 
   socket.on("exitGame", ex(() => {
     game.removePlayer(socket.id);
-    socket.emit("gameState", game.toJson());
+    io.in(`/game/${game.id}`).emit("gameState", game.toJson());
     console.log(`user ${socket.id} leaved game ${game.id}`);
+    socket.leave(`/game/${game.id}`);
     game = null;
   }));
 
@@ -66,7 +68,7 @@ io.on('connection',ex((socket) => {
     const x = msg[0];
     const y = msg[0];
     game.play(socket.id, x, y);
-    socket.emit("gameState", game.toJson());
+    io.in(`/game/${game.id}`).emit("gameState", game.toJson());
   }));
 }));
 
