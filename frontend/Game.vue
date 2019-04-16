@@ -13,8 +13,20 @@ import * as data from './data';
 export default {
   name: 'Game',
   created: function () {
+    this.gameId = this.$route.params.id;
     data.ensureInited();
-    console.log(`entered game ${this.$route.params.id}`);
+    console.log(`entering game ${this.gameId}`);
+    data.getSocket().emit("enterGame", this.gameId);
+
+    this.gameStateHandler = (gameState) => {
+      console.log("game state", gameState);
+    };
+
+    data.getSocket().on("gameState", this.gameStateHandler);
+  },
+  destroyed: function () {
+    data.getSocket().emit("exitGame");
+    data.getSocket().off("gameState", this.gateStateHandler);
   },
 };
 </script>

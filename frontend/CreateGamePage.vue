@@ -18,9 +18,15 @@ export default {
   created: function () {
     data.ensureInited();
 
-    data.getSocket().on('newGame', (msg) => {
-      this.$router.push("game/" + msg);
-    });
+    this.newGameHandler = (gameId) => {
+      console.log(`received new game alert ${gameId}`)
+      this.$router.push(`game/${gameId}`);
+    };
+
+    data.getSocket().on('newGame', this.newGameHandler);
+  },
+  destroyed: function() {
+    data.getSocket().off('newGame', this.newGameHandler);
   },
   methods: {
     newParty: function () {

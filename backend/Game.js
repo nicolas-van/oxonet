@@ -1,6 +1,7 @@
 
 const GameException = require("./GameException");
 const uuidv4 = require('uuid/v4');
+const _ = require('lodash');
 
 module.exports = class Game {
   constructor() {
@@ -13,7 +14,18 @@ module.exports = class Game {
     ];
   }
 
+  toJson() {
+    return _.cloneDeep({
+      id: this.id,
+      players: this.players,
+      board: this.board,
+    });
+  }
+
   addPlayer(player) {
+    if (this.players[0] === player || this.players[1] === player) {
+      throw new GameException("Player already added");
+    }
     if (this.players[0] === null) {
       this.players[0] = player;
     } else if (this.players[1] === null) {
