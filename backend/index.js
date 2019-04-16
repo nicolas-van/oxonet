@@ -61,6 +61,13 @@ io.on('connection',ex((socket) => {
     console.log(`user ${socket.id} leaved game ${game.id}`);
     game = null;
   }));
+
+  socket.on("play", ex((msg) => {
+    const x = msg[0];
+    const y = msg[0];
+    game.play(socket.id, x, y);
+    socket.emit("gameState", game.toJson());
+  }));
 }));
 
 http.listen(3000, () => {
