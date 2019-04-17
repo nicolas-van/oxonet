@@ -6,7 +6,8 @@
     "dev": "rm -rf .cache public && parcel frontend/index.njk --out-dir public",
     "build": "rm -rf .cache public && parcel build frontend/index.njk --public-url ./ --out-dir public",
     "test": "jest",
-    "run": "node backend/index.js"
+    "run": "node backend/index.js",
+    "run-brk": "node --inspect-brk backend/index.js"
   },
   "author": "",
   "license": "ISC",

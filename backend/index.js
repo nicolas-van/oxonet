@@ -47,7 +47,9 @@ io.on('connection',ex((socket) => {
 
   socket.on("enterGame", ex((gameId) => {
     if (! games[gameId]) {
-      throw new CommunicationException(`Game ${gameId} doesn't exist`);
+      const tmp = new Game();
+      tmp.id = gameId;
+      games[tmp.id] = tmp;
     }
     games[gameId].addPlayer(socket.id);
     game = games[gameId];
@@ -66,8 +68,16 @@ io.on('connection',ex((socket) => {
 
   socket.on("play", ex((msg) => {
     const x = msg[0];
-    const y = msg[0];
+    const y = msg[1];
+    console.log(`user ${socket.id} playing move ${x},${y}`);
     game.play(socket.id, x, y);
+    io.in(`/game/${game.id}`).emit("gameState", game.toJson());
+    console.log(`user ${socket.id} played move ${x},${y}`);
+  }));
+
+  socket.on("reset", ex((msg) => {
+    console.log(`user ${socket.id} reset game ${game.id}`);
+    game.reset();
     io.in(`/game/${game.id}`).emit("gameState", game.toJson());
   }));
 }));

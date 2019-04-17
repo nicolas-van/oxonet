@@ -7,6 +7,10 @@ module.exports = class Game {
   constructor() {
     this.id = uuidv4();
     this.players = [null, null];
+    this.reset();
+  }
+
+  reset() {
     this.board = [
       [null, null, null],
       [null, null, null],
@@ -52,9 +56,9 @@ module.exports = class Game {
   }
 
   getPlayerNumber(player) {
-    if (players[0] === player) {
+    if (this.players[0] === player) {
       return 0;
-    } else if (players[1] === player) {
+    } else if (this.players[1] === player) {
       return 1;
     } else {
       throw new GameException(`Player ${player} unknown`);
@@ -69,8 +73,9 @@ module.exports = class Game {
     if (this.board[x][y] !== null) {
       throw new GameException("Invalid move");
     }
-    this.this.board[x][y] = nbr;
+    this.board[x][y] = nbr;
     this.checkEnd();
+    this.playing = this.playing === 0 ? 1 : 0;
   }
   checkEnd() {
     // check horizontal
@@ -118,14 +123,16 @@ module.exports = class Game {
     }
     // check for a tie
     {
-      let x = 0;
-      let y = 0;
-      while (x < 3) {
-        while (y < 3) {
-          if (this.board[x][y] === null) {
+      let ax = 0;
+      while (ax < 3) {
+        let ay = 0;
+        while (ay < 3) {
+          if (this.board[ax][ay] === null) {
             return;
           }
+          ay += 1;
         }
+        ax += 1;
       }
       this.ended = true;
     }
