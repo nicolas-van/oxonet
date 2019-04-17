@@ -67,7 +67,7 @@ export default {
           }),
         };
       });
-      console.log("current board", this.board);
+      this.$forceUpdate();
     };
 
     data.getSocket().on("gameState", this.gameStateHandler);
