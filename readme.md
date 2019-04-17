@@ -3,7 +3,7 @@
 
 A tic-tac-toe implementation made with Node.js, Socket.io, Vue and hosted on Heroku.
 
-See the deployment here: https://oxonet.herokuapp.com
+See the deployment here: http://oxonet.website2.neoname.eu
 
 ## Development guide
 
